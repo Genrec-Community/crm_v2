@@ -8,7 +8,7 @@ import { Login } from './pages/Login';
 import { Sales } from './pages/Sales';
 import { Expenses } from './pages/Expenses';
 import { Items } from './pages/Items';
-import { Suspense, lazy } from 'react';
+import { Suspense } from 'react';
 import { LoadingSpinner } from './components/LoadingSpinner';
 import { Box, Typography } from '@mui/material';
 
@@ -26,7 +26,7 @@ function ProtectedRoute() {
 // Not Found page
 function NotFound() {
   return (
-    <Box 
+    <Box
       sx={{
         display: 'flex',
         flexDirection: 'column',
@@ -60,7 +60,7 @@ function AppRoutes() {
           path="/login"
           element={user ? <Navigate to="/sales" replace /> : <Login />}
         />
-        
+
         <Route element={<ProtectedRoute />}>
           <Route element={<Layout />}>
             <Route index element={<Navigate to="/sales" replace />} />
@@ -69,7 +69,7 @@ function AppRoutes() {
             <Route path="items" element={<Items />} />
           </Route>
         </Route>
-        
+
         <Route path="/404" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/404" replace />} />
       </Routes>

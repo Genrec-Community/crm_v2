@@ -9,7 +9,7 @@ import {
   TextField,
   Typography,
   Alert,
-  Stack,
+  // Stack,
   MenuItem,
   Card,
   CardContent,
@@ -40,7 +40,7 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import DateRangeIcon from '@mui/icons-material/DateRange';
-import PersonIcon from '@mui/icons-material/Person';
+// import PersonIcon from '@mui/icons-material/Person';
 
 const EXPENSE_CATEGORIES = [
   'Office Supplies',
@@ -67,7 +67,7 @@ interface ExpenseData {
 export function Expenses() {
   const { user } = useAuth();
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  // const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState('');
   const [description, setDescription] = useState('');
@@ -78,15 +78,9 @@ export function Expenses() {
   const [fetchingExpenses, setFetchingExpenses] = useState(true);
   const [totalExpenses, setTotalExpenses] = useState(0);
 
-  useEffect(() => {
-    if (user) {
-      fetchRecentExpenses();
-    }
-  }, [user]);
-
   const fetchRecentExpenses = async () => {
     if (!user) return;
-    
+
     try {
       setFetchingExpenses(true);
       const { data, error } = await supabase
@@ -95,22 +89,22 @@ export function Expenses() {
         .eq('employee_id', user.id)
         .order('created_at', { ascending: false })
         .limit(5);
-      
+
       if (error) throw error;
-      
+
       setRecentExpenses(data || []);
-      
+
       // Calculate total expenses
       const { data: totalData, error: totalError } = await supabase
         .from('expenses')
         .select('amount')
         .eq('employee_id', user.id);
-        
+
       if (totalError) throw totalError;
-      
+
       const total = totalData?.reduce((sum, expense) => sum + expense.amount, 0) || 0;
       setTotalExpenses(total);
-      
+
     } catch (error) {
       console.error('Error fetching expenses:', error);
       setError('Failed to load recent expenses');
@@ -118,6 +112,12 @@ export function Expenses() {
       setFetchingExpenses(false);
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      fetchRecentExpenses();
+    }
+  }, [user]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -138,22 +138,22 @@ export function Expenses() {
       if (expenseError) throw expenseError;
 
       setSuccess('Expense recorded successfully');
-      
+
       // Add new expense to recent expenses list
       if (data && data.length > 0) {
         setRecentExpenses(prev => [data[0], ...prev.slice(0, 4)]);
         setTotalExpenses(prev => prev + parseFloat(amount));
       }
-      
+
       setCategory('');
       setAmount('');
       setDescription('');
-      
+
       // Auto-hide success message after 5 seconds
       setTimeout(() => {
         setSuccess('');
       }, 5000);
-      
+
     } catch (error) {
       console.error('Error creating expense:', error);
       setError('Failed to record expense');
@@ -167,15 +167,15 @@ export function Expenses() {
     <Grid container spacing={3}>
       {/* Left side - Expense Form */}
       <Grid item xs={12} md={6}>
-        <Paper 
+        <Paper
           elevation={0}
-          sx={{ 
-            p: { xs: 2, sm: 3 }, 
-            mb: 3, 
+          sx={{
+            p: { xs: 2, sm: 3 },
+            mb: 3,
             borderRadius: 2,
             border: '1px solid',
             borderColor: 'divider',
-            background: theme.palette.mode === 'dark' 
+            background: theme.palette.mode === 'dark'
               ? 'linear-gradient(to right bottom, #1f2937, #111827)'
               : 'linear-gradient(to right bottom, #f9fafb, #f3f4f6)'
           }}
@@ -186,7 +186,7 @@ export function Expenses() {
               Record Expense
             </Typography>
           </Box>
-          
+
           <Typography variant="body2" color="text.secondary">
             Track business expenses by filling out the form below.
           </Typography>
@@ -194,8 +194,8 @@ export function Expenses() {
 
         {error && (
           <Collapse in={!!error}>
-            <Alert 
-              severity="error" 
+            <Alert
+              severity="error"
               sx={{ mb: 3 }}
               onClose={() => setError('')}
             >
@@ -206,8 +206,8 @@ export function Expenses() {
 
         {success && (
           <Fade in={!!success}>
-            <Alert 
-              severity="success" 
+            <Alert
+              severity="success"
               sx={{ mb: 3 }}
               icon={<CheckCircleIcon fontSize="inherit" />}
               onClose={() => setSuccess('')}
@@ -308,8 +308,8 @@ export function Expenses() {
 
       {/* Right side - Recent Expenses and Summary */}
       <Grid item xs={12} md={6}>
-        <Card 
-          variant="outlined" 
+        <Card
+          variant="outlined"
           sx={{
             height: '100%',
             display: 'flex',
@@ -321,9 +321,9 @@ export function Expenses() {
               <LocalAtmIcon sx={{ mr: 1 }} />
               Expense Summary
             </Typography>
-            
-            <Box sx={{ 
-              display: 'flex', 
+
+            <Box sx={{
+              display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
@@ -336,23 +336,23 @@ export function Expenses() {
                 {formatCurrency(totalExpenses)}
               </Typography>
             </Box>
-            
+
             <Divider sx={{ my: 2 }} />
 
             <Typography variant="subtitle1" gutterBottom sx={{ display: 'flex', alignItems: 'center' }}>
               <DateRangeIcon sx={{ mr: 1, fontSize: 20 }} />
               Recent Expenses
             </Typography>
-            
+
             {fetchingExpenses ? (
               <Box sx={{ display: 'flex', justifyContent: 'center', py: 4 }}>
                 <CircularProgress size={32} />
               </Box>
             ) : recentExpenses.length === 0 ? (
-              <Box sx={{ 
-                textAlign: 'center', 
-                py: 4, 
-                px: 2, 
+              <Box sx={{
+                textAlign: 'center',
+                py: 4,
+                px: 2,
                 bgcolor: 'background.default',
                 borderRadius: 1
               }}>
@@ -394,7 +394,7 @@ export function Expenses() {
                           <Typography
                             component="span"
                             variant="body2"
-                            sx={{ 
+                            sx={{
                               display: 'block',
                               color: 'text.primary',
                               fontWeight: 500,

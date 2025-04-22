@@ -1,4 +1,4 @@
-import { format as formatTz, formatInTimeZone } from 'date-fns-tz';
+import { formatInTimeZone } from 'date-fns-tz';
 import { formatDistance, parseISO } from 'date-fns';
 import { hi } from 'date-fns/locale';
 

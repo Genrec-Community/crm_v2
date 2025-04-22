@@ -5,7 +5,7 @@ import {
   Box,
   Button,
   Container,
-  Paper,
+  // Paper,
   TextField,
   Typography,
   Alert,
@@ -89,22 +89,22 @@ export function Login() {
         <Fade in={true} timeout={800}>
           <Box>
             <Box sx={{ textAlign: 'center', mb: 4 }}>
-              <Stack 
-                direction="row" 
-                spacing={1.5} 
-                alignItems="center" 
+              <Stack
+                direction="row"
+                spacing={1.5}
+                alignItems="center"
                 justifyContent="center"
                 sx={{ mb: 2 }}
               >
-                <BusinessIcon sx={{ 
+                <BusinessIcon sx={{
                   fontSize: isMobile ? 32 : 40,
-                  color: theme.palette.primary.main 
+                  color: theme.palette.primary.main
                 }} />
-                <Typography 
-                  variant={isMobile ? 'h4' : 'h3'} 
-                  component="h1" 
-                  fontWeight="800" 
-                  sx={{ 
+                <Typography
+                  variant={isMobile ? 'h4' : 'h3'}
+                  component="h1"
+                  fontWeight="800"
+                  sx={{
                     background: theme.palette.mode === 'dark'
                       ? `linear-gradient(45deg, ${theme.palette.primary.light} 0%, ${theme.palette.primary.main} 100%)`
                       : `linear-gradient(45deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.dark} 100%)`,
@@ -116,11 +116,11 @@ export function Login() {
                   CRM Portal
                 </Typography>
               </Stack>
-              <Typography 
-                variant="subtitle1" 
+              <Typography
+                variant="subtitle1"
                 color="text.secondary"
-                sx={{ 
-                  maxWidth: 400, 
+                sx={{
+                  maxWidth: 400,
                   mx: 'auto',
                   fontWeight: 500,
                   lineHeight: 1.5,
@@ -131,17 +131,17 @@ export function Login() {
               </Typography>
             </Box>
 
-            <Card 
+            <Card
               elevation={theme.palette.mode === 'dark' ? 5 : 1}
-              sx={{ 
-                p: { xs: 3, sm: 4 }, 
+              sx={{
+                p: { xs: 3, sm: 4 },
                 borderRadius: 3,
                 background: theme.palette.mode === 'dark'
                   ? 'linear-gradient(145deg, rgba(36, 58, 83, 0.8) 0%, rgba(30, 41, 59, 0.8) 100%)'
                   : '#ffffff',
                 backdropFilter: 'blur(16px)',
                 border: '1px solid',
-                borderColor: theme.palette.mode === 'dark' 
+                borderColor: theme.palette.mode === 'dark'
                   ? 'rgba(255, 255, 255, 0.08)'
                   : 'rgba(0, 0, 0, 0.05)',
                 boxShadow: theme.palette.mode === 'dark'
@@ -157,31 +157,31 @@ export function Login() {
                 }
               }}
             >
-              <Box sx={{ 
-                mb: 3, 
-                display: 'flex', 
-                flexDirection: 'column', 
+              <Box sx={{
+                mb: 3,
+                display: 'flex',
+                flexDirection: 'column',
                 alignItems: 'center'
               }}>
-                <FingerprintIcon 
-                  sx={{ 
-                    fontSize: 48, 
+                <FingerprintIcon
+                  sx={{
+                    fontSize: 48,
                     color: theme.palette.primary.main,
                     mb: 2,
                     opacity: 0.9
-                  }} 
+                  }}
                 />
-                <Typography 
-                  component="h2" 
-                  variant="h5" 
-                  fontWeight="700" 
+                <Typography
+                  component="h2"
+                  variant="h5"
+                  fontWeight="700"
                   textAlign="center"
                   gutterBottom
                 >
                   Sign In
                 </Typography>
-                <Typography 
-                  variant="body2" 
+                <Typography
+                  variant="body2"
                   color="text.secondary"
                   textAlign="center"
                 >
@@ -190,9 +190,9 @@ export function Login() {
               </Box>
 
               {error && (
-                <Alert 
-                  severity="error" 
-                  sx={{ 
+                <Alert
+                  severity="error"
+                  sx={{
                     mb: 3,
                     borderRadius: 2,
                     boxShadow: theme.palette.mode === 'dark'
@@ -259,10 +259,10 @@ export function Login() {
                 />
 
                 <Box sx={{ textAlign: 'right', mb: 2 }}>
-                  <Link 
-                    href="#" 
+                  <Link
+                    href="#"
                     variant="body2"
-                    sx={{ 
+                    sx={{
                       fontWeight: 500,
                       color: theme.palette.primary.main,
                       textDecoration: 'none',
@@ -322,15 +322,15 @@ export function Login() {
                     'Sign In'
                   )}
                 </Button>
-                
-                <Divider sx={{ 
+
+                <Divider sx={{
                   my: 2.5,
                   '&::before, &::after': {
                     borderColor: theme.palette.divider,
                   }
                 }}>
-                  <Typography 
-                    variant="body2" 
+                  <Typography
+                    variant="body2"
                     color="text.secondary"
                     sx={{
                       px: 1,
@@ -341,9 +341,9 @@ export function Login() {
                   </Typography>
                 </Divider>
 
-                <Typography 
-                  variant="body2" 
-                  color="text.secondary" 
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
                   align="center"
                   sx={{
                     lineHeight: 1.6,
@@ -354,11 +354,11 @@ export function Login() {
               </Box>
             </Card>
 
-            <Typography 
-              variant="body2" 
-              color="text.secondary" 
-              align="center" 
-              sx={{ 
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              align="center"
+              sx={{
                 mt: 4,
                 opacity: 0.7,
               }}

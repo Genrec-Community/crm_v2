@@ -10,7 +10,7 @@ import {
   TextField,
   Typography,
   Alert,
-  Stack,
+  // Stack,
   MenuItem,
   IconButton,
   Grid,
@@ -49,16 +49,16 @@ type SaleItem = {
   itemName?: string; // For display purposes
 };
 
-const SummaryCard = styled(Card)(({ theme }) => ({
-  height: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-  transition: 'all 0.3s ease',
-  '&:hover': {
-    transform: 'translateY(-4px)',
-    boxShadow: theme.shadows[4]
-  }
-}));
+// const SummaryCard = styled(Card)(({ theme }) => ({
+//   height: '100%',
+//   display: 'flex',
+//   flexDirection: 'column',
+//   transition: 'all 0.3s ease',
+//   '&:hover': {
+//     transform: 'translateY(-4px)',
+//     boxShadow: theme.shadows[4]
+//   }
+// }));
 
 export function Sales() {
   const theme = useTheme();
@@ -87,7 +87,7 @@ export function Sales() {
         .from('items')
         .select('*')
         .order('name');
-      
+
       if (error) throw error;
       setItems(data || []);
     } catch (error) {
@@ -214,7 +214,7 @@ export function Sales() {
       setNotes('');
       setSaleItems([]);
       setActiveStep(0); // Reset to first step
-      
+
       // Auto-hide success message after 5 seconds
       setTimeout(() => {
         setSuccess('');
@@ -256,10 +256,10 @@ export function Sales() {
               ) : (
                 <>
                   {saleItems.length === 0 ? (
-                    <Box 
-                      sx={{ 
-                        p: 4, 
-                        textAlign: 'center', 
+                    <Box
+                      sx={{
+                        p: 4,
+                        textAlign: 'center',
                         bgcolor: 'background.default',
                         borderRadius: 1,
                         border: '1px dashed',
@@ -270,8 +270,8 @@ export function Sales() {
                       <Typography variant="body1" color="text.secondary" gutterBottom>
                         No items added yet
                       </Typography>
-                      <Button 
-                        variant="outlined" 
+                      <Button
+                        variant="outlined"
                         onClick={addSaleItem}
                         startIcon={<AddIcon />}
                         sx={{ mt: 1 }}
@@ -283,10 +283,10 @@ export function Sales() {
                     <>
                       {saleItems.map((saleItem, index) => (
                         <Fade key={index} in={true} timeout={300}>
-                          <Card 
-                            variant="outlined" 
-                            sx={{ 
-                              mb: 2, 
+                          <Card
+                            variant="outlined"
+                            sx={{
+                              mb: 2,
                               p: 2,
                               transition: 'all 0.2s',
                               '&:hover': {
@@ -314,7 +314,7 @@ export function Sales() {
                                   ))}
                                 </TextField>
                               </Grid>
-                              
+
                               <Grid item xs={5} sm={2}>
                                 <TextField
                                   fullWidth
@@ -329,7 +329,7 @@ export function Sales() {
                                   size={isSmallScreen ? "small" : "medium"}
                                 />
                               </Grid>
-                              
+
                               <Grid item xs={7} sm={3}>
                                 <TextField
                                   fullWidth
@@ -347,7 +347,7 @@ export function Sales() {
                                   size={isSmallScreen ? "small" : "medium"}
                                 />
                               </Grid>
-                              
+
                               <Grid item xs={10} sm={1} sx={{ textAlign: 'center' }}>
                                 <Tooltip title="Remove item">
                                   <IconButton
@@ -359,7 +359,7 @@ export function Sales() {
                                   </IconButton>
                                 </Tooltip>
                               </Grid>
-                              
+
                               {saleItem.item_id && (
                                 <Grid item xs={12}>
                                   <Divider sx={{ my: 1 }} />
@@ -367,13 +367,13 @@ export function Sales() {
                                     <Typography variant="body2" color="text.secondary">
                                       Subtotal: {formatCurrency(calculateSubtotal(saleItem))}
                                     </Typography>
-                                    
+
                                     {saleItem.discount > 0 && (
                                       <Typography variant="body2" color="error">
                                         Discount: -{formatCurrency(calculateDiscount(saleItem))}
                                       </Typography>
                                     )}
-                                    
+
                                     <Typography variant="subtitle2">
                                       Item Total: {formatCurrency(calculateItemTotal(saleItem))}
                                     </Typography>
@@ -385,10 +385,10 @@ export function Sales() {
                         </Fade>
                       ))}
 
-                      <Box sx={{ 
-                        mt: 3, 
-                        p: 2, 
-                        bgcolor: 'background.default', 
+                      <Box sx={{
+                        mt: 3,
+                        p: 2,
+                        bgcolor: 'background.default',
                         borderRadius: 1,
                         border: '1px solid',
                         borderColor: 'divider',
@@ -416,7 +416,7 @@ export function Sales() {
             </CardContent>
           </Card>
         );
-        
+
       case 1:
         return (
           <Card variant="outlined" sx={{ mb: 3 }}>
@@ -425,7 +425,7 @@ export function Sales() {
                 <PersonIcon sx={{ mr: 1 }} />
                 Customer Information
               </Typography>
-              
+
               <Grid container spacing={3}>
                 <Grid item xs={12}>
                   <TextField
@@ -443,7 +443,7 @@ export function Sales() {
                     }}
                   />
                 </Grid>
-                
+
                 <Grid item xs={12}>
                   <TextField
                     fullWidth
@@ -459,7 +459,7 @@ export function Sales() {
             </CardContent>
           </Card>
         );
-        
+
       case 2:
         return (
           <Card variant="outlined" sx={{ mb: 3 }}>
@@ -468,7 +468,7 @@ export function Sales() {
                 <ReceiptIcon sx={{ mr: 1 }} />
                 Review Sale
               </Typography>
-              
+
               <Box sx={{ mb: 4 }}>
                 <Typography variant="subtitle1" gutterBottom fontWeight="500">
                   Customer
@@ -483,15 +483,15 @@ export function Sales() {
                     </Typography>
                   )}
                 </Card>
-                
+
                 <Typography variant="subtitle1" gutterBottom fontWeight="500">
                   Items
                 </Typography>
                 <Card variant="outlined" sx={{ mb: 3 }}>
-                  <Box sx={{ 
-                    maxHeight: '200px', 
-                    overflowY: 'auto', 
-                    p: 1, 
+                  <Box sx={{
+                    maxHeight: '200px',
+                    overflowY: 'auto',
+                    p: 1,
                     '&::-webkit-scrollbar': {
                       width: '8px',
                       height: '8px',
@@ -502,12 +502,12 @@ export function Sales() {
                     }
                   }}>
                     {saleItems.map((item, index) => (
-                      <Box 
-                        key={index} 
-                        sx={{ 
-                          py: 1, 
-                          px: 2, 
-                          borderBottom: index < saleItems.length - 1 ? '1px solid' : 'none', 
+                      <Box
+                        key={index}
+                        sx={{
+                          py: 1,
+                          px: 2,
+                          borderBottom: index < saleItems.length - 1 ? '1px solid' : 'none',
                           borderColor: 'divider',
                           display: 'flex',
                           justifyContent: 'space-between',
@@ -530,15 +530,15 @@ export function Sales() {
                     ))}
                   </Box>
                 </Card>
-                
-                <Box 
-                  sx={{ 
-                    display: 'flex', 
-                    justifyContent: 'space-between', 
+
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
                     alignItems: 'center',
                     px: 2,
-                    py: 1.5, 
-                    bgcolor: 'primary.main', 
+                    py: 1.5,
+                    bgcolor: 'primary.main',
                     color: 'primary.contrastText',
                     borderRadius: 1
                   }}
@@ -550,7 +550,7 @@ export function Sales() {
             </CardContent>
           </Card>
         );
-        
+
       default:
         return <Box>Unknown step</Box>;
     }
@@ -568,9 +568,9 @@ export function Sales() {
           <Typography variant="body1" paragraph>
             The sale has been recorded in the system.
           </Typography>
-          <Button 
-            variant="contained" 
-            color="primary" 
+          <Button
+            variant="contained"
+            color="primary"
             onClick={() => {
               setSuccess('');
               addSaleItem();
@@ -586,15 +586,15 @@ export function Sales() {
 
   return (
     <Box>
-      <Paper 
-        elevation={0} 
-        sx={{ 
-          p: { xs: 2, sm: 3 }, 
-          mb: 3, 
+      <Paper
+        elevation={0}
+        sx={{
+          p: { xs: 2, sm: 3 },
+          mb: 3,
           borderRadius: 2,
           border: '1px solid',
           borderColor: 'divider',
-          background: theme.palette.mode === 'dark' 
+          background: theme.palette.mode === 'dark'
             ? 'linear-gradient(to right bottom, #1f2937, #111827)'
             : 'linear-gradient(to right bottom, #f9fafb, #f3f4f6)'
         }}
@@ -603,16 +603,16 @@ export function Sales() {
           <Typography variant="h5" sx={{ flexGrow: 1 }}>
             New Sale
           </Typography>
-          
-          <Chip 
-            label="In Progress" 
-            color="primary" 
-            size="small" 
+
+          <Chip
+            label="In Progress"
+            color="primary"
+            size="small"
             variant="outlined"
-            sx={{ fontWeight: 500 }} 
+            sx={{ fontWeight: 500 }}
           />
         </Box>
-        
+
         <Typography variant="body2" color="text.secondary">
           Create a new sales transaction by adding items, customer information, and reviewing the sale.
         </Typography>
@@ -620,8 +620,8 @@ export function Sales() {
 
       {error && (
         <Collapse in={!!error}>
-          <Alert 
-            severity="error" 
+          <Alert
+            severity="error"
             sx={{ mb: 3 }}
             onClose={() => setError('')}
           >
@@ -640,7 +640,7 @@ export function Sales() {
           ))}
         </Stepper>
       </Box>
-      
+
       {/* Mobile stepper (text only) */}
       <Box sx={{ mb: 2, display: { xs: 'block', sm: 'none' } }}>
         <Typography variant="subtitle1" color="text.secondary" align="center">
@@ -650,7 +650,7 @@ export function Sales() {
 
       {/* Step content */}
       {renderStep(activeStep)}
-      
+
       {/* Navigation buttons */}
       <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
         <Button
@@ -660,7 +660,7 @@ export function Sales() {
         >
           Back
         </Button>
-        
+
         <Button
           variant="contained"
           onClick={handleNextStep}
