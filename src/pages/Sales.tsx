@@ -599,17 +599,19 @@ export function Sales() {
             : 'linear-gradient(to right bottom, #f9fafb, #f3f4f6)'
         }}
       >
-        <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-          <Typography variant="h5" sx={{ flexGrow: 1 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+          <Typography variant="h5" sx={{ fontWeight: 500 }}>
             New Sale
           </Typography>
-
-          <Chip
-            label="In Progress"
-            color="primary"
-            size="small"
-            variant="outlined"
-            sx={{ fontWeight: 500 }}
+          <Box
+            component="img"
+            src="/Dhishank Final With Compass.png"
+            alt="Dhishank Logo"
+            sx={{
+              height: 80,
+              width: 'auto',
+              ml: 2
+            }}
           />
         </Box>
 

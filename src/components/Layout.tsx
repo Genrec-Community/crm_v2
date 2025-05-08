@@ -496,7 +496,43 @@ export function Layout() {
 
       <Box sx={{ flexGrow: 1 }} />
 
-
+      <Box sx={{ px: 2, py: 1 }}>
+        <Tooltip title={`Switch to ${mode === 'dark' ? 'light' : 'dark'} mode`} arrow>
+          <ListItemButton
+            onClick={toggleTheme}
+            sx={{
+              borderRadius: 2,
+              py: 1.2,
+              px: 1.5,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-start',
+              transition: 'all 0.2s ease-in-out',
+              '&:hover': {
+                bgcolor: mode === 'dark'
+                  ? alpha(theme.palette.background.paper, 0.1)
+                  : alpha(theme.palette.background.paper, 0.3),
+              },
+            }}
+          >
+            <ListItemIcon
+              sx={{
+                minWidth: 36,
+                color: theme.palette.text.secondary
+              }}
+            >
+              {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+            </ListItemIcon>
+            <ListItemText
+              primary={
+                <Typography variant="body2" fontWeight={500}>
+                  {mode === 'dark' ? 'Light Mode' : 'Dark Mode'}
+                </Typography>
+              }
+            />
+          </ListItemButton>
+        </Tooltip>
+      </Box>
 
       <Divider />
 
@@ -562,11 +598,13 @@ export function Layout() {
               flexGrow: 1,
             }}
           >
-            <BusinessIcon
+            <Box
+              component="img"
+              src="/Dhishank Final With Compass.png"
+              alt="Dhishank Logo"
               sx={{
-                fontSize: 28,
+                height: 55,
                 mr: 1.5,
-                color: theme.palette.primary.main,
                 display: { xs: 'none', sm: 'block' }
               }}
             />
@@ -600,28 +638,10 @@ export function Layout() {
           <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1, md: 2 } }}>
             {!isMobile && (
               <>
-                <Tooltip title={`Switch to ${mode === 'dark' ? 'light' : 'dark'} mode`} arrow>
-                  <IconButton
-                    onClick={toggleTheme}
-                    sx={{
-                      color: theme.palette.text.primary,
-                      bgcolor: alpha(theme.palette.background.paper, 0.2),
-                      '&:hover': {
-                        bgcolor: alpha(theme.palette.background.paper, 0.3),
-                      },
-                      width: 40,
-                      height: 40
-                    }}
-                  >
-                    {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-                  </IconButton>
-                </Tooltip>
-
                 <Button
                   onClick={handleSignOut}
                   startIcon={<ExitToAppIcon />}
                   sx={{
-                    ml: 2,
                     px: 2,
                     py: 1,
                     color: theme.palette.text.primary,
