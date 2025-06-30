@@ -6,6 +6,7 @@ import { ErrorBoundary } from './components/ErrorBoundary';
 import { Layout } from './components/Layout';
 import { Login } from './pages/Login';
 import { Sales } from './pages/Sales';
+import { Quote } from './pages/Quote';
 import { Expenses } from './pages/Expenses';
 import { Items } from './pages/Items';
 import { Suspense } from 'react';
@@ -65,6 +66,7 @@ function AppRoutes() {
           <Route element={<Layout />}>
             <Route index element={<Navigate to="/sales" replace />} />
             <Route path="sales" element={<Sales />} />
+            <Route path="quote" element={<Quote />} />
             <Route path="expenses" element={<Expenses />} />
             <Route path="items" element={<Items />} />
           </Route>

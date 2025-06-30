@@ -44,6 +44,7 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import BusinessIcon from '@mui/icons-material/Business';
+import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
 
 const drawerWidth = 280;
 
@@ -103,6 +104,7 @@ export function Layout() {
       onToggle: handleToggleSalesExpand,
       subItems: [
         { text: 'Record Sale', path: '/sales', icon: <BusinessCenterIcon sx={{ fontSize: '0.8rem' }} /> },
+        { text: 'Create Quote', path: '/quote', icon: <RequestQuoteIcon sx={{ fontSize: '0.8rem' }} /> },
       ]
     },
     { text: 'Expenses', path: '/expenses', icon: <ReceiptIcon /> },
@@ -545,7 +547,7 @@ export function Layout() {
             fontWeight: 500
           }}
         >
-          CRM System v1.2.0
+          Dhishank System v1.2.0
         </Typography>
       </Box>
     </>
@@ -631,7 +633,7 @@ export function Layout() {
                 }
               }}
             >
-              CRM Employee Portal
+              Dhishank Employee Portal
             </Typography>
           </Box>
 
@@ -778,7 +780,7 @@ export function Layout() {
             }
           }}
         >
-          © {new Date().getFullYear()} CRM Employee Portal. All rights reserved.
+          © {new Date().getFullYear()} Dhishank Employee Portal. All rights reserved.
         </Typography>
       </Box>
     </Box>
